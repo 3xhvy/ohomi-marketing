@@ -542,7 +542,6 @@ export const en: LandingDict = {
     linkDemo: 'Book a demo',
     legalHeading: 'Legal',
     legalPrivacy: 'Privacy policy',
-    legalTerms: 'Terms of use',
     bottomRight: '© {year} Ohomi. All rights reserved.',
   },
   product: {

@@ -287,7 +287,6 @@ export interface LandingDict {
     linkDemo: string
     legalHeading: string
     legalPrivacy: string
-    legalTerms: string
     bottomRight: string
   }
   product: {

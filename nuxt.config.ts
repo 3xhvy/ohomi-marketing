@@ -7,6 +7,9 @@ export default defineNuxtConfig({
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://ohomi.net',
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://ohomi.vn',
+      // The nav login link left the app's own domain when marketing moved here,
+      // so it can no longer be a relative path.
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://host.ohomi.net',
     },
   },
   routeRules: {

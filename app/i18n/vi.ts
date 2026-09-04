@@ -542,7 +542,6 @@ export const vi: LandingDict = {
     linkDemo: 'Đặt lịch demo',
     legalHeading: 'Pháp lý',
     legalPrivacy: 'Chính sách bảo mật',
-    legalTerms: 'Điều khoản sử dụng',
     bottomRight: '© {year} Ohomi. All rights reserved.',
   },
   product: {
