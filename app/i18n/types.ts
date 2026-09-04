@@ -337,7 +337,5 @@ export interface LandingDict {
     aboutDescription: string
     demoTitle: string
     blogTitle: string
-    privacyTitle: string
-    privacyDescription: string
   }
 }

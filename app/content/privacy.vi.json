@@ -1,0 +1,72 @@
+{
+  "title": "Chính Sách Bảo Mật",
+  "description": "Cách Ohomi xử lý dữ liệu của bạn và bảo vệ quyền riêng tư",
+  "slug": "privacy",
+  "lastUpdated": "2026-04-24",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Thông Tin Chúng Tôi Không Thu Thập",
+      "content": "Chúng tôi không thu thập bất kỳ thông tin nhận dạng cá nhân nào (như tên, địa chỉ email, số điện thoại, thông tin vị trí chính xác) từ người dùng Ứng dụng.",
+      "subsections": []
+    },
+    {
+      "id": "section-2",
+      "title": "Thông Tin Chúng Tôi Có Thể Thu Thập (Không Cá Nhân)",
+      "content": "Chúng tôi có thể thu thập thông tin không cá nhân về việc sử dụng Ứng dụng của bạn để cải thiện trải nghiệm và hiệu suất của bạn:",
+      "subsections": [
+        {
+          "title": "Dữ Liệu Sử Dụng",
+          "content": "Thông tin về cách bạn tương tác với Ứng dụng (ví dụ: các tính năng được sử dụng, thời gian sử dụng). Dữ liệu này giúp chúng tôi hiểu và cải thiện Ứng dụng."
+        },
+        {
+          "title": "Dữ Liệu Kỹ Thuật",
+          "content": "Thông tin về thiết bị của bạn (ví dụ: loại thiết bị, hệ điều hành, phiên bản Ứng dụng). Dữ liệu này giúp chúng tôi đảm bảo Ứng dụng hoạt động tốt trên nhiều thiết bị khác nhau."
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "Cách Chúng Tôi Sử Dụng Thông Tin",
+      "content": "Thông tin không cá nhân được thu thập được sử dụng cho các mục đích sau:",
+      "subsections": [
+        {
+          "title": "Cải Thiện Ứng Dụng",
+          "content": "Phân tích dữ liệu để nâng cao chất lượng và tính năng của Ứng dụng."
+        },
+        {
+          "title": "Bảo Trì và Tối Ưu Hóa",
+          "content": "Khắc phục sự cố và đảm bảo Ứng dụng hoạt động ổn định."
+        },
+        {
+          "title": "Nghiên Cứu Nội Bộ",
+          "content": "Tiến hành phân tích ẩn danh để hiểu hành vi của người dùng và xu hướng chung."
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Chia Sẻ Thông Tin",
+      "content": "Chúng tôi không chia sẻ bất kỳ thông tin cá nhân nào với bên thứ ba. Thông tin không cá nhân có thể được chia sẻ dưới dạng tổng hợp và ẩn danh (không thể được sử dụng để nhận dạng cá nhân bạn) với các đối tác phân tích hoặc nhà cung cấp dịch vụ để hỗ trợ phân tích và cải thiện Ứng dụng."
+    },
+    {
+      "id": "section-5",
+      "title": "Bảo Mật Thông Tin",
+      "content": "Chúng tôi triển khai các biện pháp bảo mật hợp lý để bảo vệ thông tin được thu thập. Tuy nhiên, không có hệ thống nào hoàn toàn an toàn."
+    },
+    {
+      "id": "section-6",
+      "title": "Thay Đổi Chính Sách Bảo Mật Này",
+      "content": "Chúng tôi có thể cập nhật Chính Sách này. Bất kỳ thay đổi nào sẽ được đăng trên trang này. Việc bạn tiếp tục sử dụng Ứng dụng sau khi các thay đổi được đăng có nghĩa là bạn chấp nhận những thay đổi đó."
+    },
+    {
+      "id": "section-7",
+      "title": "Liên Hệ Với Chúng Tôi",
+      "content": "Nếu bạn có bất kỳ câu hỏi nào về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi tại:",
+      "contact": {
+        "email": "info@ohomi.com.vn",
+        "phone": "(+84) 028 7108 8899"
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Privacy Policy",
+  "description": "How Ohomi handles your data and protects your privacy",
+  "slug": "privacy",
+  "lastUpdated": "2026-04-24",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Information We Do Not Collect",
+      "content": "We do not collect any personally identifiable information (such as your name, email address, phone number, precise location information) from App users.",
+      "subsections": []
+    },
+    {
+      "id": "section-2",
+      "title": "Information We May Collect (Non-Personal)",
+      "content": "We may collect non-personal information about your App usage to improve your experience and performance:",
+      "subsections": [
+        {
+          "title": "Usage Data",
+          "content": "Information about how you interact with the App (e.g., features used, duration of use). This data helps us understand and improve the App."
+        },
+        {
+          "title": "Technical Data",
+          "content": "Information about your device (e.g., device type, operating system, App version). This data helps us ensure the App functions well across various devices."
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "How We Use Information",
+      "content": "The non-personal information collected is used solely for the following purposes:",
+      "subsections": [
+        {
+          "title": "App Improvement",
+          "content": "Analyzing data to enhance the App's quality and features."
+        },
+        {
+          "title": "Maintenance and Optimization",
+          "content": "Troubleshooting and ensuring the App operates stably."
+        },
+        {
+          "title": "Internal Research",
+          "content": "Conducting anonymous analysis to understand user behavior and general trends."
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Information Sharing",
+      "content": "We do not share any personal information with any third parties. Non-personal information may be shared in an aggregated and anonymous form (which cannot be used to personally identify you) with analytics partners or service providers to assist in analyzing and improving the App."
+    },
+    {
+      "id": "section-5",
+      "title": "Information Security",
+      "content": "We implement reasonable security measures to protect the information collected. However, no system is entirely secure."
+    },
+    {
+      "id": "section-6",
+      "title": "Changes to This Privacy Policy",
+      "content": "We may update this Policy. Any changes will be posted on this page. Your continued use of the App after changes are posted constitutes your acceptance of those changes."
+    },
+    {
+      "id": "section-7",
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy, please contact us at:",
+      "contact": {
+        "email": "info@ohomi.com.vn",
+        "phone": "(+84) 028 7108 8899"
+      }
+    }
+  ]
+}

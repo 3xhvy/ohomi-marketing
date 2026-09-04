@@ -601,7 +601,5 @@ export const en: LandingDict = {
     aboutDescription: 'Who builds Ohomi, why we started, and how to reach us.',
     demoTitle: 'Book a demo — Ohomi',
     blogTitle: 'Blog — Ohomi',
-    privacyTitle: 'Privacy Policy — Ohomi',
-    privacyDescription: 'How Ohomi handles your data and protects your privacy.',
   },
 }

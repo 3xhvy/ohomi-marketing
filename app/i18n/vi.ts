@@ -601,7 +601,5 @@ export const vi: LandingDict = {
     aboutDescription: 'Ai xây dựng Ohomi, vì sao chúng tôi bắt đầu, và cách liên hệ.',
     demoTitle: 'Đặt lịch demo — Ohomi',
     blogTitle: 'Blog — Ohomi',
-    privacyTitle: 'Chính sách bảo mật — Ohomi',
-    privacyDescription: 'Ohomi xử lý dữ liệu của bạn và bảo vệ quyền riêng tư như thế nào.',
   },
 }

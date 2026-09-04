@@ -1,0 +1,261 @@
+/* Legal page styles - reuses landing-page color tokens */
+/* Import landing styles so we inherit the brand colors */
+@import './landing.css';
+
+.ohomi-legal {
+  /* Inherit from landing styles - use .ohomi-landing wrapper */
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  color: var(--oh-text);
+  background: var(--oh-bg);
+  min-height: 100vh;
+}
+
+.legal-hero {
+  padding-block: 3rem;
+  text-align: center;
+  border-bottom: 0.5px solid var(--oh-border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.legal-hero h1 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--oh-text);
+  line-height: 1.2;
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  color: var(--oh-text-2);
+  margin-bottom: 1rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.breadcrumb a {
+  color: var(--oh-brand);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--oh-brand-hover);
+  text-decoration: underline;
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: var(--oh-text-3);
+  margin-top: 0.5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.legal-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 2rem;
+  padding-inline: 1rem;
+}
+
+@media (max-width: 768px) {
+  .legal-container {
+    grid-template-columns: 1fr;
+    padding-block: 1rem;
+  }
+
+  .legal-toc {
+    display: none;
+  }
+}
+
+.legal-toc {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.legal-toc nav {
+  border-left: 2px solid var(--oh-brand);
+  padding-left: 1rem;
+}
+
+.toc-item {
+  margin-bottom: 0;
+}
+
+.toc-item a {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--oh-text-2);
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease;
+  font-size: 0.9375rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+}
+
+.toc-item a:hover {
+  color: var(--oh-brand);
+}
+
+.toc-item a.active {
+  color: var(--oh-brand);
+  font-weight: 600;
+}
+
+.toc-item a:focus-visible {
+  outline: 2px solid var(--oh-brand);
+  outline-offset: 2px;
+}
+
+.legal-content {
+  padding-inline: 0;
+}
+
+.legal-section {
+  margin-bottom: 2.5rem;
+  scroll-margin-top: 100px;
+}
+
+.legal-section h2 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--oh-text);
+  line-height: 1.3;
+}
+
+.legal-section p {
+  color: var(--oh-text-2);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.subsections {
+  margin-top: 1.5rem;
+}
+
+.legal-subsection {
+  margin-left: 0;
+  margin-top: 1.5rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--oh-brand-soft);
+}
+
+.legal-subsection h3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--oh-brand-ink);
+}
+
+.legal-subsection p {
+  color: var(--oh-text-2);
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.contact-block {
+  background: var(--oh-brand-soft);
+  padding: 1.25rem;
+  border-radius: var(--oh-radius-md);
+  border: 0.5px solid var(--oh-brand);
+  margin-top: 1.5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.contact-block p {
+  margin-bottom: 0.5rem;
+  color: var(--oh-text);
+}
+
+.contact-block p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-block a {
+  color: var(--oh-brand);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 150ms ease;
+}
+
+.contact-block a:hover {
+  color: var(--oh-brand-hover);
+  text-decoration: underline;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 0.5rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--oh-bg);
+  border: 0.5px solid var(--oh-border);
+  border-radius: var(--oh-radius-md);
+  padding: 0.5rem;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.language-switcher a {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--oh-text-2);
+  background: transparent;
+  transition: background-color 150ms ease, color 150ms ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.language-switcher a:hover:not(.active) {
+  background: var(--oh-surface);
+  color: var(--oh-text);
+}
+
+.language-switcher a.active {
+  background: var(--oh-brand);
+  color: white;
+}
+
+.language-switcher a:focus-visible {
+  outline: 2px solid var(--oh-brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-switcher a,
+  .toc-item a,
+  .breadcrumb a,
+  .contact-block a {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .language-switcher {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .legal-hero h1 {
+    font-size: clamp(1.75rem, 3vw, 2rem);
+  }
+}
