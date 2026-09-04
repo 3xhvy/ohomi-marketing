@@ -1,0 +1,276 @@
+.ohomi-landing {
+  --oh-bg: #fafafa;
+  --oh-surface: #ffffff;
+  --oh-border: rgba(15, 23, 42, 0.08);
+  --oh-text: #0f1219;
+  --oh-text-2: #404854;
+  --oh-text-3: #6b7280;
+  --oh-brand: #0f766e;
+  --oh-brand-rgb: 15, 118, 110;
+  --oh-brand-hover: #0d5f59;
+  --oh-brand-light: #14b8a6;
+  --oh-brand-soft: #e0f7f6;
+  --oh-brand-ink: #1d6861;
+  --oh-brand-ring: rgba(15, 118, 110, 0.15);
+  --oh-accent-blue: #0369a1;
+  --oh-accent-blue-hover: #025482;
+  --oh-accent-warm: #c4572b;
+  --oh-accent-purple: #7c3aed;
+  --oh-accent-cyan: #06b6d4;
+
+  --oh-chip-peach-bg: #faece7;
+  --oh-chip-peach-fg: #993c1d;
+  --oh-chip-blue-bg: #e6f1fb;
+  --oh-chip-blue-fg: #185fa5;
+  --oh-chip-green-bg: #eaf3de;
+  --oh-chip-green-fg: #3b6d11;
+  --oh-chip-lavender-bg: #eeedfe;
+  --oh-chip-lavender-fg: #534ab7;
+  --oh-chip-amber-bg: #faeeda;
+  --oh-chip-amber-fg: #854f0b;
+
+  --oh-radius-md: 8px;
+  --oh-radius-lg: 14px;
+
+  /* Z-index scale */
+  --z-sticky: 40;
+  --z-modal: 50;
+  --z-dropdown: 30;
+
+  /* 3D additions */
+  --oh-3d-glow-teal:   rgba(15, 118, 110, 0.45);
+  --oh-3d-glow-amber:  rgba(245, 158, 11, 0.45);
+  --oh-3d-glow-purple: rgba(124, 58, 237, 0.45);
+  --oh-section-dark:   #0d1117;
+  --oh-section-mid:    #161b27;
+  --oh-card-3d-bg:     rgba(255, 255, 255, 0.06);
+  --oh-card-3d-border: rgba(255, 255, 255, 0.1);
+  --oh-glass-light: rgba(255, 255, 255, 0.2);
+  --oh-glass-dark: rgba(8, 15, 26, 0.34);
+  --oh-glass-border-light: rgba(255, 255, 255, 0.48);
+  --oh-glass-border-dark: rgba(255, 255, 255, 0.14);
+
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  color: var(--oh-text);
+  background:
+    radial-gradient(ellipse 110% 45% at 20% 2%, rgba(20, 184, 166, 0.14), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 80% 98%, rgba(15, 118, 110, 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 60% 45%, rgba(7, 22, 40, 0.45), transparent 75%),
+    linear-gradient(180deg, #060f1a 0%, #08152a 25%, #071525 65%, #060f1a 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+}
+
+.ohomi-landing::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.045) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.055) 1px, transparent 1.5px);
+  background-size: 88px 88px, 88px 88px, 28px 28px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.34));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.34));
+  z-index: 0;
+}
+
+.ohomi-landing::after {
+  content: '';
+  position: fixed;
+  inset: auto 0 0;
+  height: 46vh;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, transparent 0 12%, rgba(15, 118, 110, 0.07) 12% 12.35%, transparent 12.35% 26%, rgba(3, 105, 161, 0.055) 26% 26.35%, transparent 26%),
+    linear-gradient(45deg, transparent 0 18%, rgba(15, 118, 110, 0.05) 18% 18.3%, transparent 18.3% 34%);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.ohomi-landing > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 3D card tilt utility ─────────────────────────── */
+.ohomi-landing .card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: box-shadow 300ms ease;
+  will-change: transform;
+}
+
+/* ── Section helpers ──────────────────────────────── */
+.ohomi-landing .oh-section {
+  padding: 80px 48px;
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  /* Floating card on the page canvas */
+  background: rgba(10, 18, 30, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 28px;
+  box-shadow:
+    0 8px 56px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(20, 184, 166, 0.05) inset;
+  overflow: hidden;
+  backdrop-filter: blur(6px) saturate(1.08);
+  -webkit-backdrop-filter: blur(6px) saturate(1.08);
+}
+
+.ohomi-landing .oh-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 480px at var(--blob-x, 80%) calc(var(--blob-y, 15%) + var(--section-parallax-y, 0px)),
+    rgba(20, 184, 166, 0.055) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ohomi-landing .oh-stack--dark .oh-section::before {
+  background: radial-gradient(
+    circle 480px at var(--blob-x, 80%) calc(var(--blob-y, 15%) + var(--section-parallax-y, 0px)),
+    rgba(20, 184, 166, 0.028) 0%,
+    transparent 70%
+  );
+}
+
+
+.ohomi-landing .oh-section--dark {
+  background: transparent;
+  max-width: 100%;
+  padding: 96px 24px;
+}
+
+.ohomi-landing .oh-section--dark .oh-section__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.ohomi-landing .oh-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oh-brand);
+  margin: 0 0 12px;
+}
+
+.ohomi-landing .oh-h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--oh-text);
+  margin: 0 0 16px;
+}
+
+.ohomi-landing .oh-h2--light {
+  color: #f0f4f8;
+}
+
+.ohomi-landing .oh-lead {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--oh-text-2);
+  max-width: 560px;
+  margin: 0 0 48px;
+}
+
+/* ── Showcase sections (Landlord, Tenant, WebApp) — on canvas, no card wrapper ── */
+/* Content sits directly on the page background; product mockups are the visual hero */
+.ohomi-landing .oh-stack[data-stack-idx="0"] .oh-section,
+.ohomi-landing .oh-stack[data-stack-idx="1"] .oh-section,
+.ohomi-landing .oh-stack[data-stack-idx="2"] .oh-section {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+  max-width: 1160px;
+  padding: 96px 24px;
+}
+
+/* ── Scroll-reveal base state (GSAP sets final state) */
+.ohomi-landing .reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* ── Transparent spacer — sections float on the page canvas ── */
+.ohomi-landing .oh-stack {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding: 0 20px 28px;
+  /* dark CSS vars cascade to all section children */
+  --oh-text:    #f0f4f8;
+  --oh-text-2:  #c8d5e2;
+  --oh-text-3:  #8a9bb0;
+  --oh-border:  rgba(255, 255, 255, 0.09);
+  --oh-surface: rgba(255, 255, 255, 0.05);
+  color: #f0f4f8;
+}
+
+/* ── Ambient blob position per section (new 7-section order) ── */
+.ohomi-landing .oh-stack {
+  --blob-x: 80%;
+  --blob-y: 15%;
+  --section-parallax-y: 0px;
+}
+.ohomi-landing .oh-stack[data-stack-idx="0"] { --blob-x: 82%; --blob-y: 12%; }  /* Landlord */
+.ohomi-landing .oh-stack[data-stack-idx="1"] { --blob-x: 14%; --blob-y: 80%; }  /* Tenant */
+.ohomi-landing .oh-stack[data-stack-idx="2"] { --blob-x: 84%; --blob-y: 72%; }  /* WebApp */
+.ohomi-landing .oh-stack[data-stack-idx="3"] { --blob-x: 16%; --blob-y: 22%; }  /* Mobile */
+.ohomi-landing .oh-stack[data-stack-idx="4"] { --blob-x: 50%; --blob-y: 14%; }  /* SmartHome */
+.ohomi-landing .oh-stack[data-stack-idx="5"] { --blob-x: 70%; --blob-y: 40%; }  /* SocialProof */
+.ohomi-landing .oh-stack[data-stack-idx="6"] { --blob-x: 40%; --blob-y: 46%; }  /* Pricing */
+.ohomi-landing .oh-stack[data-stack-idx="7"] { --blob-x: 28%; --blob-y: 58%; }  /* FinalCta */
+
+.ohomi-landing .font-mono-plus {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.ohomi-landing *,
+.ohomi-landing *::before,
+.ohomi-landing *::after {
+  box-sizing: border-box;
+}
+
+.ohomi-landing a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ohomi-landing :focus-visible {
+  outline: 2px solid var(--oh-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ohomi-landing *,
+  .ohomi-landing *::before,
+  .ohomi-landing *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ohomi-landing .oh-stack {
+    opacity: 1 !important;
+    transform: none !important;
+    --section-parallax-y: 0px !important;
+    filter: none !important;
+  }
+}
