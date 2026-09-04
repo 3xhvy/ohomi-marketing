@@ -328,4 +328,16 @@ export interface LandingDict {
     subtitle: string
     bullets: string[]
   }
+  seo: {
+    homeTitle: string
+    homeDescription: string
+    productTitle: string
+    productDescription: string
+    aboutTitle: string
+    aboutDescription: string
+    demoTitle: string
+    blogTitle: string
+    privacyTitle: string
+    privacyDescription: string
+  }
 }

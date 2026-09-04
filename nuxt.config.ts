@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: false },
   css: ['~/assets/css/landing.css'],
+  // Ported components reference each other by bare name (`<HeroSection />`), so
+  // directory-based prefixing would silently render them as unknown elements.
+  components: [{ path: '~/components', pathPrefix: false }],
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://ohomi.net',

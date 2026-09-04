@@ -590,4 +590,18 @@ export const vi: LandingDict = {
     subtitle: 'Chúng tôi sẽ hướng dẫn Ohomi trực tiếp và trả lời câu hỏi của bạn.',
     bullets: ['Phản hồi trong 24h', 'Không cần thẻ tín dụng', 'Hỗ trợ tiếng Việt và tiếng Anh'],
   },
+  seo: {
+    homeTitle: 'Ohomi — Quản lý nhà cho thuê cho chủ nhà',
+    homeDescription:
+      'Một bảng điều khiển duy nhất cho căn hộ, khách thuê, tiền thuê và toàn bộ thiết bị kết nối. Dành cho chủ nhà muốn ít ứng dụng hơn — không phải nhiều hơn.',
+    productTitle: 'Sản phẩm — Ohomi web và ứng dụng di động',
+    productDescription:
+      'Ohomi xử lý hợp đồng, hoá đơn, chỉ số điện nước và thiết bị nhà thông minh ở cùng một nơi.',
+    aboutTitle: 'Về chúng tôi — Ohomi',
+    aboutDescription: 'Ai xây dựng Ohomi, vì sao chúng tôi bắt đầu, và cách liên hệ.',
+    demoTitle: 'Đặt lịch demo — Ohomi',
+    blogTitle: 'Blog — Ohomi',
+    privacyTitle: 'Chính sách bảo mật — Ohomi',
+    privacyDescription: 'Ohomi xử lý dữ liệu của bạn và bảo vệ quyền riêng tư như thế nào.',
+  },
 }

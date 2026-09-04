@@ -590,4 +590,18 @@ export const en: LandingDict = {
     subtitle: 'We’ll walk you through Ohomi live and answer your questions.',
     bullets: ['Response within 24h', 'No credit card', 'Vietnamese + English support'],
   },
+  seo: {
+    homeTitle: 'Ohomi — Rental property management for landlords',
+    homeDescription:
+      'One dashboard for apartments, tenants, rent and every connected device. For landlords who want fewer apps — not more.',
+    productTitle: 'Product — Ohomi web and mobile app',
+    productDescription:
+      'How Ohomi handles contracts, invoices, utility readings and smart-home devices from a single place.',
+    aboutTitle: 'About — Ohomi',
+    aboutDescription: 'Who builds Ohomi, why we started, and how to reach us.',
+    demoTitle: 'Book a demo — Ohomi',
+    blogTitle: 'Blog — Ohomi',
+    privacyTitle: 'Privacy Policy — Ohomi',
+    privacyDescription: 'How Ohomi handles your data and protects your privacy.',
+  },
 }
