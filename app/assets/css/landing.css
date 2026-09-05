@@ -63,18 +63,7 @@
 }
 
 .ohomi-landing::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 118, 110, 0.045) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.055) 1px, transparent 1.5px);
-  background-size: 88px 88px, 88px 88px, 28px 28px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.34));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.34));
-  z-index: 0;
+  content: none;
 }
 
 .ohomi-landing::after {
@@ -221,20 +210,17 @@
   color: #f0f4f8;
 }
 
-/* ── Ambient blob position per section (new 7-section order) ── */
+/* ── Ambient blob position per section ── */
 .ohomi-landing .oh-stack {
   --blob-x: 80%;
   --blob-y: 15%;
   --section-parallax-y: 0px;
 }
-.ohomi-landing .oh-stack[data-stack-idx="0"] { --blob-x: 82%; --blob-y: 12%; }  /* Landlord */
-.ohomi-landing .oh-stack[data-stack-idx="1"] { --blob-x: 14%; --blob-y: 80%; }  /* Tenant */
-.ohomi-landing .oh-stack[data-stack-idx="2"] { --blob-x: 84%; --blob-y: 72%; }  /* WebApp */
-.ohomi-landing .oh-stack[data-stack-idx="3"] { --blob-x: 16%; --blob-y: 22%; }  /* Mobile */
-.ohomi-landing .oh-stack[data-stack-idx="4"] { --blob-x: 50%; --blob-y: 14%; }  /* SmartHome */
-.ohomi-landing .oh-stack[data-stack-idx="5"] { --blob-x: 70%; --blob-y: 40%; }  /* SocialProof */
-.ohomi-landing .oh-stack[data-stack-idx="6"] { --blob-x: 40%; --blob-y: 46%; }  /* Pricing */
-.ohomi-landing .oh-stack[data-stack-idx="7"] { --blob-x: 28%; --blob-y: 58%; }  /* FinalCta */
+.ohomi-landing .oh-stack[data-stack-idx="0"] { --blob-x: 82%; --blob-y: 12%; }  /* SocialProof */
+.ohomi-landing .oh-stack[data-stack-idx="1"] { --blob-x: 14%; --blob-y: 80%; }  /* Landlord */
+.ohomi-landing .oh-stack[data-stack-idx="2"] { --blob-x: 84%; --blob-y: 72%; }  /* Pricing */
+.ohomi-landing .oh-stack[data-stack-idx="3"] { --blob-x: 16%; --blob-y: 22%; }  /* FAQ */
+.ohomi-landing .oh-stack[data-stack-idx="4"] { --blob-x: 50%; --blob-y: 14%; }  /* FinalCta */
 
 .ohomi-landing .font-mono-plus {
   font-family: 'JetBrains Mono', ui-monospace, monospace;

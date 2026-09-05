@@ -149,20 +149,20 @@ export const vi: LandingDict = {
     initials: 'MA',
   },
   hero3d: {
-    badge: 'Nền tảng quản lý bất động sản #1',
+    badge: 'Cho chủ nhà Việt Nam',
     title: 'Quản lý nhà cho thuê —\nKhông còn đau đầu',
     titleLine1: 'Trung tâm điều hành\nchủ nhà',
     titleLine2: 'Quản lý toàn bộ nhà thuê\ntrong một màn hình',
     sub: 'Theo dõi phòng trống, hợp đồng, thu tiền và bảo trì cho 1–20 căn mà không cần Excel hay tin nhắn rời rạc.',
     subStart: 'Tiết kiệm ',
     subMetric: '8 giờ/tuần.',
-    subEnd: ' Chủ nhà, khách thuê, thiết bị thông minh trong một ứng dụng.',
+    subEnd: ' Hóa đơn, hợp đồng và bảo trì — không cần Excel hay Zalo rời rạc.',
     ctaDemo: 'Đặt lịch demo',
     ctaApp: 'Tải ứng dụng',
+    ctaPricing: 'Xem bảng giá',
     ctaIos: 'App Store',
     ctaAndroid: 'Google Play',
     proofItems: ['92% lấp đầy', '6 hợp đồng cần xử lý', '3 phiếu bảo trì'],
-    pressLabel: 'Đã xuất hiện trên',
     scrollHint: 'Cuộn để khám phá',
     socialProof: '200+ chủ nhà tin dùng',
     cardA: {
@@ -218,20 +218,20 @@ export const vi: LandingDict = {
     eyebrow: 'Dành cho chủ nhà',
     heading: 'Mọi vấn đề được giải quyết,\ntrên một nền tảng',
     lead: 'Không còn nhắn tin đòi tiền thuê. Ohomi tự động hóa đơn, hợp đồng và bảo trì.',
-    ctaPrimary: 'Dùng thử miễn phí',
-    ctaSecondary: 'Xem demo tính năng',
-    ctaNote: 'Không cần thẻ tín dụng · 14 ngày dùng thử',
+    ctaPrimary: 'Đặt lịch demo',
+    ctaSecondary: 'Xem bảng giá',
+    ctaNote: 'Không cần thẻ tín dụng · Demo 30 phút',
     proofPairs: [
       { before: 'Thu tiền thuê thủ công', after: 'Tự động hóa đơn, đúng ngày' },
       { before: 'Theo dõi hợp đồng trong Excel', after: 'Cảnh báo hết hạn 30 / 15 / 7 ngày trước' },
-      { before: 'Báo cáo doanh thu rời rạc', after: 'Dashboard P&L cập nhật thời gian thực' },
+      { before: 'Báo cáo doanh thu rời rạc', after: 'Báo cáo lãi lỗ cập nhật theo ngày' },
     ],
     features: {
       autoInvoice:   {
         title: 'Hóa đơn tự động',
         desc: 'Hóa đơn được tạo và gửi tự động vào ngày đến hạn. Khách thuê thanh toán một chạm.',
         stat: 'Tiết kiệm ~2 giờ/tuần',
-        pain: 'Thu tiền qua WhatsApp',
+        pain: 'Thu tiền qua Zalo',
       },
       contractAlert: {
         title: 'Cảnh báo hợp đồng',
@@ -241,8 +241,8 @@ export const vi: LandingDict = {
       },
       revenueDash:   {
         title: 'Dashboard doanh thu',
-        desc: 'P&L hàng tháng, tỷ lệ lấp đầy và thu tiền — theo thời gian thực, không phải cuối tháng.',
-        stat: 'P&L theo thời gian thực',
+        desc: 'Lãi lỗ hàng tháng, tỷ lệ lấp đầy và thu tiền — theo thời gian thực, không phải cuối tháng.',
+        stat: 'Lãi lỗ theo thời gian thực',
         pain: 'Đối soát Excel hàng tháng',
       },
       maintenance:   {
@@ -392,7 +392,7 @@ export const vi: LandingDict = {
     eyebrow: 'Bảng giá',
     heading: 'Giá bậc thang\ncàng nhiều phòng, càng tiết kiệm',
     lead: 'Trả theo số phòng thực tế, không phát sinh chi phí ẩn. Bắt đầu từ ngay hôm nay.',
-    bestValue: 'BEST VALUE',
+    bestValue: 'Phù hợp nhất',
     plans: [
       {
         tier: 'Gói Starter',
@@ -406,8 +406,8 @@ export const vi: LandingDict = {
           'Báo cáo hàng tháng',
           'Hỗ trợ qua Zalo',
         ],
-        cta: 'Bắt đầu ngay',
-        highlight: false,
+        cta: 'Đặt lịch demo',
+        highlight: true,
       },
       {
         tier: 'Gói Growth',
@@ -422,7 +422,7 @@ export const vi: LandingDict = {
           'Báo cáo nâng cao',
         ],
         cta: 'Chọn gói này',
-        highlight: true,
+        highlight: false,
       },
       {
         tier: 'Gói Scale',
@@ -436,7 +436,7 @@ export const vi: LandingDict = {
           'API kết nối bên thứ 3',
           'Hỗ trợ ưu tiên 24/7',
         ],
-        cta: 'Bắt đầu ngay',
+        cta: 'Chọn gói này',
         highlight: false,
       },
       {
@@ -463,7 +463,7 @@ export const vi: LandingDict = {
     fieldName: 'Họ và tên',
     fieldPhone: 'Số điện thoại',
     fieldRooms: 'Số lượng phòng',
-    roomsOptions: ['1–5 phòng', '6–20 phòng', '21–50 phòng', '50+ phòng'],
+    roomsOptions: ['1–100 phòng', '101–300 phòng', '301–500 phòng', 'Trên 500 phòng'],
     submit: 'Đặt lịch demo ngay',
     trustItems: ['Phản hồi trong 24h', 'Không cần thẻ tín dụng', 'Demo miễn phí 30 phút'],
     successTitle: 'Đã nhận yêu cầu!',
@@ -471,43 +471,47 @@ export const vi: LandingDict = {
     phonePlaceholder: '0909 xxx xxx',
     errorRequired: 'Bắt buộc',
     errorPhoneInvalid: 'Vui lòng nhập số điện thoại hợp lệ',
-    errorSubmit: 'Đã có lỗi xảy ra. Vui lòng thử lại hoặc gọi trực tiếp cho chúng tôi.',
+    errorSubmit: 'Không gửi được. Thử lại, hoặc email support@ohomi.vn.',
     errorRateLimited: 'Bạn thao tác quá nhanh — vui lòng thử lại sau một phút.',
+    errorRetry: 'Thử lại',
+    successAgain: 'Gửi yêu cầu khác',
   },
   faq: {
     eyebrow: 'Câu hỏi thường gặp',
     heading: 'Những điều chủ nhà hỏi đầu tiên.',
     items: [
       {
-        question: 'Ohomi hỗ trợ những thương hiệu nhà thông minh nào?',
-        answer:
-          'Tuya, Aqara và mọi thiết bị tương thích Matter ngay lập tức. Chúng tôi bổ sung tích hợp mới hàng tháng — nếu thương hiệu của bạn chưa có, hãy báo để được ưu tiên.',
-      },
-      {
-        question: 'Khách thuê có cần cài thêm ứng dụng để xem thiết bị không?',
-        answer:
-          'Không. Khách thuê dùng cổng Ohomi trên bất kỳ trình duyệt nào — không phải xoay sở giữa nhiều ứng dụng. Vẫn có ứng dụng gốc nếu họ thích.',
-      },
-      {
-        question: 'Tiền thuê được thu và phí như thế nào?',
-        answer:
-          'Khách thuê thanh toán bằng thẻ hoặc chuyển khoản. Ohomi công khai phí giao dịch — xem trang bảng giá để biết mức chính xác theo từng khu vực.',
-      },
-      {
         question: 'Tôi có phải chuyển hợp đồng cũ sang không?',
         answer:
           'Không. Bạn có thể nhập hợp đồng và khách thuê từ Excel khi thiết lập, hoặc giữ hệ thống hiện tại và gắn Ohomi như một lớp bổ sung.',
       },
       {
+        question: 'Giá tính thế nào — có phí ẩn không?',
+        answer:
+          'Trả theo số phòng thực tế, không phát sinh phí ẩn. Starter 10.000đ/phòng, Growth 8.000đ, Scale 4.000đ, Enterprise 2.000đ — mỗi tháng.',
+        href: '#pricing',
+        linkLabel: 'Xem bảng giá',
+      },
+      {
+        question: 'Tiền thuê được thu như thế nào?',
+        answer:
+          'Khách thuê thanh toán VietQR hoặc chuyển khoản. Hóa đơn gửi đúng ngày, đối soát tự động — không đòi tiền trên Zalo.',
+      },
+      {
         question: 'Điều gì xảy ra khi khách thuê dọn đi?',
         answer:
-          'Ohomi chạy checklist trả nhà, thu hồi truy cập thông minh, reset thiết bị và tạo báo cáo rõ ràng — tự động.',
+          'Ohomi chạy checklist trả nhà, thu hồi truy cập, reset thiết bị và tạo báo cáo rõ ràng — tự động.',
+      },
+      {
+        question: 'Tôi đang quản lý dưới 20 phòng — có phù hợp không?',
+        answer:
+          'Có. Gói Starter dành cho 1–100 phòng, và demo 30 phút đi từ đúng quy mô nhà bạn đang chạy.',
       },
     ],
   },
   socialProofSection: {
     eyebrow: 'Chủ nhà nói gì',
-    heading: 'Được 1.200+ chủ nhà\ntin dùng trên toàn Việt Nam',
+    heading: 'Chủ nhà trên toàn Việt Nam\ntin dùng Ohomi',
     items: [
       {
         quote: 'Trước mất 2 ngày mỗi tháng làm Excel. Giờ chỉ 15 phút.',
@@ -542,7 +546,7 @@ export const vi: LandingDict = {
     linkDemo: 'Đặt lịch demo',
     legalHeading: 'Pháp lý',
     legalPrivacy: 'Chính sách bảo mật',
-    bottomRight: '© {year} Ohomi. All rights reserved.',
+    bottomRight: '© {year} Ohomi. Giữ mọi quyền.',
   },
   product: {
     tabsLabel: 'Khu vực sản phẩm',

@@ -15,6 +15,8 @@ export interface PairRow {
 export interface QaItem {
   question: string
   answer: string
+  href?: string
+  linkLabel?: string
 }
 
 export interface FeatureCopy {
@@ -93,10 +95,10 @@ export interface LandingDict {
     subEnd: string
     ctaDemo: string
     ctaApp: string
+    ctaPricing: string
     ctaIos: string
     ctaAndroid: string
     proofItems: string[]
-    pressLabel: string
     scrollHint: string
     socialProof: string
     cardA: {
@@ -268,6 +270,8 @@ export interface LandingDict {
     errorPhoneInvalid: string
     errorSubmit: string
     errorRateLimited: string
+    errorRetry: string
+    successAgain: string
   }
   faq: {
     eyebrow: string

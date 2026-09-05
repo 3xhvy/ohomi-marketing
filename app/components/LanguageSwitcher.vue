@@ -36,8 +36,8 @@ const { t, lang, setLang } = useLandingI18n()
 .oh-lang {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
+  gap: 1px;
+  padding: 1px 4px;
   border-radius: 999px;
   border: 0.5px solid var(--oh-border);
   background: rgba(255, 255, 255, 0.6);
@@ -48,10 +48,12 @@ const { t, lang, setLang } = useLandingI18n()
 .oh-lang__opt {
   background: none;
   border: none;
-  padding: 2px 6px;
+  min-width: 24px;
+  min-height: 22px;
+  padding: 0 5px;
   font: inherit;
   cursor: pointer;
-  color: var(--oh-text-3);
+  color: var(--oh-text-2);
   border-radius: 999px;
   transition:
     color 180ms ease,
@@ -62,6 +64,10 @@ const { t, lang, setLang } = useLandingI18n()
 }
 .oh-lang__opt.is-active {
   color: var(--oh-brand);
+}
+.oh-lang__opt:focus-visible {
+  outline: 2px solid var(--oh-brand-light);
+  outline-offset: 1px;
 }
 .oh-lang__sep {
   color: var(--oh-text-3);

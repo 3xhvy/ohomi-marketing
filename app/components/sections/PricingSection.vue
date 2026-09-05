@@ -36,8 +36,10 @@
           </ul>
 
           <button
+            type="button"
             class="oh-plan__cta"
             :class="{ 'oh-plan__cta--primary': plan.highlight }"
+            @click="selectPlan(i)"
           >
             {{ plan.cta }}
           </button>
@@ -54,7 +56,13 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { t, dict } = useLandingI18n()
+const { t, tList, dict } = useLandingI18n()
+const { goToDemo } = useDemoIntent()
+
+function selectPlan(index: number) {
+  const rooms = tList<string>('finalCta.roomsOptions')[index] ?? ''
+  goToDemo(rooms)
+}
 
 const plans = computed(() => dict.value.pricingSection.plans)
 const headingHtml = computed(() =>
@@ -156,7 +164,7 @@ onMounted(() => {
 
 .oh-plan__tier {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.72);
   margin: 0;
   margin-bottom: 4px;
 }
@@ -185,13 +193,13 @@ onMounted(() => {
 
 .oh-plan__unit {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.72);
   margin-left: 2px;
 }
 
 .oh-plan__period {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.68);
   margin: 0 0 20px;
 }
 
@@ -227,6 +235,7 @@ onMounted(() => {
 /* CTA button */
 .oh-plan__cta {
   width: 100%;
+  min-height: 44px;
   padding: 12px 0;
   border-radius: 12px;
   font-size: 14px;

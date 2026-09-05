@@ -2,7 +2,6 @@
   <section id="faq" class="oh-section oh-faq">
     <div class="oh-faq__inner">
       <div class="oh-faq__header">
-        <p class="oh-eyebrow">{{ t('faq.eyebrow') }}</p>
         <h2 class="oh-h2 oh-h2--light">{{ t('faq.heading') }}</h2>
       </div>
       <div class="oh-faq__list">
@@ -25,6 +24,12 @@
             :hidden="openIndex !== i"
           >
             <p>{{ item.answer }}</p>
+            <a
+              v-if="item.href && item.linkLabel"
+              :href="item.href"
+              class="oh-faq__link"
+              @click.prevent="goToHash(item.href)"
+            >{{ item.linkLabel }}</a>
           </div>
         </div>
       </div>
@@ -41,6 +46,11 @@ const openIndex = ref<number | null>(null)
 
 function toggle(i: number) {
   openIndex.value = openIndex.value === i ? null : i
+}
+
+function goToHash(href: string) {
+  const id = href.replace('#', '')
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -109,5 +119,14 @@ function toggle(i: number) {
 
 .oh-faq__answer p {
   margin: 0;
+}
+
+.oh-faq__link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--oh-brand-light);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 </style>

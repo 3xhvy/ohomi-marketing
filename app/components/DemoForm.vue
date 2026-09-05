@@ -4,6 +4,7 @@
     <div class="df-success__icon">✓</div>
     <h3>{{ t('finalCta.successTitle') }}</h3>
     <p>{{ t('finalCta.successSub') }}</p>
+    <button type="button" class="df-again" @click="reset">{{ t('finalCta.successAgain') }}</button>
   </div>
 
   <form v-else class="df-form" @submit.prevent="submit" novalidate>
@@ -12,7 +13,9 @@
       <input
         id="df-name"
         v-model="form.name"
+        name="name"
         type="text"
+        autocomplete="name"
         required
         :placeholder="t('finalCta.fieldName')"
         :aria-invalid="!!errors.name"
@@ -25,7 +28,9 @@
       <input
         id="df-phone"
         v-model="form.phone"
+        name="tel"
         type="tel"
+        autocomplete="tel"
         required
         :placeholder="t('finalCta.phonePlaceholder')"
         :aria-invalid="!!errors.phone"
@@ -47,7 +52,10 @@
       </select>
       <span v-if="errors.rooms" id="df-rooms-error" class="df-error" role="alert">{{ errors.rooms }}</span>
     </div>
-    <span v-if="submitError" class="df-error df-error--submit" role="alert">{{ submitError }}</span>
+    <div v-if="submitError" class="df-error-block">
+      <span class="df-error df-error--submit" role="alert">{{ submitError }}</span>
+      <button type="button" class="df-retry" @click="submit">{{ t('finalCta.errorRetry') }}</button>
+    </div>
     <button type="submit" class="df-submit" :disabled="loading" :aria-busy="loading">
       <span v-if="loading">...</span>
       <span v-else>{{ t('finalCta.submit') }}</span>
@@ -63,12 +71,23 @@ const props = withDefaults(defineProps<{ source?: string }>(), { source: 'landin
 const emit = defineEmits<{ (e: 'success'): void }>()
 const { t, tList } = useLandingI18n()
 const { apiBase } = useRuntimeConfig().public
+const { selectedRooms } = useDemoIntent()
 
-const form = reactive({ name: '', phone: '', rooms: '' })
+const form = reactive({ name: '', phone: '', rooms: selectedRooms.value })
+
 const errors = reactive({ name: '', phone: '', rooms: '' })
 const loading = ref(false)
 const success = ref(false)
 const submitError = ref('')
+
+watch(selectedRooms, (value) => {
+  if (value) form.rooms = value
+})
+
+function reset() {
+  success.value = false
+  submitError.value = ''
+}
 
 function validate(): boolean {
   errors.name = form.name.trim() ? '' : t('finalCta.errorRequired')
@@ -111,7 +130,7 @@ async function submit() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .df-field input,
@@ -119,7 +138,7 @@ async function submit() {
   padding: 13px 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  font-size: 15px;
+  font-size: 16px;
   background: rgba(255, 255, 255, 0.06);
   color: #f0f4f8;
   transition: border-color 180ms, background 180ms, box-shadow 180ms;
@@ -141,6 +160,25 @@ async function submit() {
 
 .df-error { font-size: 12px; color: #fdba74; }
 .df-error--submit { text-align: center; }
+.df-error-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.df-retry,
+.df-again {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f0f4f8;
+  border-radius: 10px;
+  padding: 10px 16px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.df-again { margin-top: 16px; }
 
 .df-submit {
   padding: 15px;
@@ -170,7 +208,7 @@ async function submit() {
   flex-wrap: wrap;
   justify-content: center;
   font-size: 12px;
-  color: rgba(20, 184, 166, 0.7);
+  color: #5eead4;
   padding-top: 4px;
 }
 

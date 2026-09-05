@@ -3,7 +3,6 @@
   <section id="final-cta" class="oh-cta">
     <div class="oh-cta__inner">
       <div class="oh-cta__header reveal-up">
-        <p class="oh-eyebrow" style="color: var(--oh-brand-light)">{{ t('finalCta.eyebrow') }}</p>
         <h2 class="oh-h2 oh-h2--light" v-html="headingHtml" />
         <p class="oh-cta__lead">{{ t('finalCta.lead') }}</p>
       </div>
@@ -54,7 +53,7 @@ onMounted(() => {
 
 .oh-cta__lead {
   font-size: 17px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.78);
   margin: 0;
   line-height: 1.6;
 }

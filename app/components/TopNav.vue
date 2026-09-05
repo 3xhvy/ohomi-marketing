@@ -11,7 +11,7 @@
   >
     <div class="oh-nav__inner">
       <NuxtLink to="/" class="oh-nav__brand" aria-label="Ohomi">
-        <OwenHomeLogo :width="118" :height="30" />
+        <OwenHomeLogo :width="118" :height="28" />
       </NuxtLink>
 
       <ul class="oh-nav__links" role="list">
@@ -26,7 +26,7 @@
       <div class="oh-nav__actions">
         <LanguageSwitcher />
         <a :href="`${appUrl}/host/login`" class="oh-nav__login">{{ t('nav.login') }}</a>
-        <CtaButton href="/demo" variant="primary" @click.prevent="goDemo">
+        <CtaButton :href="demoHref" variant="primary" @click.prevent="goDemo">
           {{ t('nav.bookDemo') }}
         </CtaButton>
       </div>
@@ -42,7 +42,10 @@
           <NuxtLink :to="link.to" @click="mobileOpen = false">{{ link.label }}</NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/demo" @click="mobileOpen = false">{{ t('nav.bookDemo') }}</NuxtLink>
+          <a :href="`${appUrl}/host/login`" @click="mobileOpen = false">{{ t('nav.login') }}</a>
+        </li>
+        <li>
+          <a :href="demoHref" @click.prevent="goDemo">{{ t('nav.bookDemo') }}</a>
         </li>
       </ul>
     </div>
@@ -79,8 +82,15 @@ function isActive(to: string) {
   return to === '/' ? route.path === '/' : route.path.startsWith(to)
 }
 
+const { goToDemo } = useDemoIntent()
+const demoHref = computed(() => (route.path === '/' ? '#final-cta' : '/demo'))
+
 function goDemo() {
   mobileOpen.value = false
+  if (route.path === '/') {
+    goToDemo()
+    return
+  }
   navigateTo('/demo')
 }
 
@@ -99,18 +109,19 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  padding: 12px 24px;
+  padding: 8px 16px;
   transition: background 300ms ease;
 }
 
 .oh-nav__inner {
-  max-width: 1280px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 10px 20px;
+  gap: 20px;
+  padding: 8px 20px;
   border: 1px solid transparent;
   border-radius: var(--oh-radius-lg);
   backdrop-filter: blur(22px) saturate(1.65);
@@ -152,7 +163,29 @@ onUnmounted(() => {
     0 16px 38px rgba(15, 118, 110, 0.16);
 }
 
-.oh-nav__brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+.oh-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #f8fafc;
+}
+
+.oh-nav__brand :deep(.oh-logo) {
+  gap: 6px;
+}
+
+.oh-nav__brand :deep(.oh-logo__mark) {
+  width: 22px;
+  height: 22px;
+}
+
+.oh-nav__brand :deep(.oh-logo__word) {
+  font-size: 1.05rem;
+}
+
+.oh-nav--over-light .oh-nav__brand {
+  color: var(--oh-text);
+}
 
 .oh-nav__links {
   display: flex;
@@ -164,30 +197,78 @@ onUnmounted(() => {
 
 .oh-nav__links a {
   display: inline-block;
-  padding: 6px 10px;
-  font-size: 13px;
-  font-weight: 500;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--oh-text-2);
-  border-radius: 6px;
-  transition: color 150ms, background 150ms;
+  border: none;
+  border-radius: var(--oh-radius-md);
+  transition:
+    color 180ms ease,
+    background 180ms ease;
   text-decoration: none;
 }
 
-.oh-nav__links a:hover { color: var(--oh-text); background: var(--oh-brand-soft); }
+.oh-nav__links a:hover {
+  color: var(--oh-text);
+  background: var(--oh-brand-soft);
+}
 
 .oh-nav__links a.is-active {
   color: var(--oh-brand);
   background: var(--oh-brand-soft);
 }
 
-.oh-nav__actions { display: flex; align-items: center; gap: 12px; }
+.oh-nav__links a:focus-visible {
+  outline: 2px solid var(--oh-brand-light);
+  outline-offset: 2px;
+}
+
+.oh-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.oh-nav__actions :deep(.oh-cta) {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.oh-nav--over-dark :deep(.oh-lang),
+.oh-nav--over-brand-dark :deep(.oh-lang) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.oh-nav--over-dark :deep(.oh-lang__opt),
+.oh-nav--over-brand-dark :deep(.oh-lang__opt) {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+.oh-nav--over-dark :deep(.oh-lang__opt:hover),
+.oh-nav--over-brand-dark :deep(.oh-lang__opt:hover) {
+  color: #f8fffe;
+}
+
+.oh-nav--over-dark :deep(.oh-lang__opt.is-active),
+.oh-nav--over-brand-dark :deep(.oh-lang__opt.is-active) {
+  color: var(--oh-brand-light);
+}
 
 .oh-nav__login {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--oh-text-2);
   transition: color 150ms;
 }
 .oh-nav__login:hover { color: var(--oh-text); }
+.oh-nav__login:focus-visible {
+  outline: 2px solid var(--oh-brand-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 .oh-nav--over-dark .oh-nav__links a,
 .oh-nav--over-brand-dark .oh-nav__links a,
@@ -197,7 +278,12 @@ onUnmounted(() => {
 }
 
 .oh-nav--over-dark .oh-nav__links a:hover,
-.oh-nav--over-brand-dark .oh-nav__links a:hover,
+.oh-nav--over-brand-dark .oh-nav__links a:hover {
+  color: #f8fffe;
+  background: rgba(var(--oh-brand-rgb), 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
 .oh-nav--over-dark .oh-nav__login:hover,
 .oh-nav--over-brand-dark .oh-nav__login:hover {
   color: #fff;
@@ -206,7 +292,13 @@ onUnmounted(() => {
 .oh-nav--over-dark .oh-nav__links a.is-active,
 .oh-nav--over-brand-dark .oh-nav__links a.is-active {
   color: var(--oh-brand-light);
-  background: rgba(var(--oh-brand-rgb), 0.18);
+  background: rgba(var(--oh-brand-rgb), 0.26);
+}
+
+.oh-nav--over-dark .oh-nav__links a.is-active:hover,
+.oh-nav--over-brand-dark .oh-nav__links a.is-active:hover {
+  color: #f0fdfa;
+  background: rgba(var(--oh-brand-rgb), 0.34);
 }
 
 .oh-nav--over-light .oh-nav__links a,
@@ -274,7 +366,23 @@ onUnmounted(() => {
   text-decoration: none;
 }
 
+@media (min-width: 1200px) {
+  .oh-nav {
+    padding: 8px 24px;
+  }
+  .oh-nav__inner {
+    padding: 8px 24px;
+  }
+}
+
 @media (max-width: 900px) {
+  .oh-nav {
+    padding: 6px 12px;
+  }
+  .oh-nav__inner {
+    padding: 4px 8px;
+    gap: 10px;
+  }
   .oh-nav__links { display: none; }
   .oh-nav__login { display: none; }
   .oh-nav__burger { display: flex; }
@@ -282,17 +390,22 @@ onUnmounted(() => {
 
 @media (max-width: 520px) {
   .oh-nav {
-    padding: 12px;
+    padding: 6px 8px;
   }
   .oh-nav__inner {
-    gap: 10px;
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 4px 8px;
+  }
+  .oh-nav__brand :deep(.oh-logo__word) {
+    font-size: 1rem;
   }
   .oh-nav__actions {
-    gap: 8px;
+    gap: 4px;
+    min-width: 0;
   }
   .oh-nav__actions :deep(.oh-cta) {
-    display: none;
+    padding: 7px 10px;
+    font-size: 13px;
   }
 }
 </style>

@@ -118,8 +118,8 @@ onMounted(() => {
   color: #f0f4f8;
 }
 .oh-proof__role {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
   margin-top: 2px;
 }
 

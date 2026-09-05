@@ -11,15 +11,12 @@
       <LandlordSection />
     </div>
     <div class="oh-stack" data-stack-idx="2" data-nav-theme="dark">
-      <TenantSection />
-    </div>
-    <div class="oh-stack" data-stack-idx="3" data-nav-theme="dark">
       <PricingSection />
     </div>
-    <div class="oh-stack" data-stack-idx="4" data-nav-theme="dark">
+    <div class="oh-stack" data-stack-idx="3" data-nav-theme="dark">
       <FaqSection />
     </div>
-    <div class="oh-stack" data-stack-idx="5" data-nav-theme="dark">
+    <div class="oh-stack" data-stack-idx="4" data-nav-theme="dark">
       <FinalCta />
     </div>
   </main>

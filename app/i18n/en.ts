@@ -149,20 +149,20 @@ export const en: LandingDict = {
     initials: 'MA',
   },
   hero3d: {
-    badge: 'Property Management Platform #1',
+    badge: 'Built for Vietnam landlords',
     title: 'Rental Management —\nNo More Headaches',
     titleLine1: 'Landlord command center',
     titleLine2: 'Run every rental\nfrom one screen',
     sub: 'Track vacancies, leases, rent collection, and maintenance for 1–20 units without spreadsheets or scattered messages.',
     subStart: 'Save ',
     subMetric: '8 hours/week.',
-    subEnd: ' Landlords, tenants, and smart devices in one app.',
+    subEnd: ' Invoices, leases, and maintenance — no Excel or scattered Zalo threads.',
     ctaDemo: 'Book a Demo',
     ctaApp: 'Download App',
+    ctaPricing: 'See pricing',
     ctaIos: 'App Store',
     ctaAndroid: 'Google Play',
     proofItems: ['92% occupancy', '6 leases to handle', '3 maintenance tickets'],
-    pressLabel: 'Featured in',
     scrollHint: 'Scroll to explore',
     socialProof: '200+ landlords trust us',
     cardA: {
@@ -217,10 +217,10 @@ export const en: LandingDict = {
   landlord: {
     eyebrow: 'For Landlords',
     heading: 'Every problem solved,\nin one place',
-    lead: 'Stop chasing rent on WhatsApp. Ohomi handles invoices, contracts, and maintenance — automatically.',
-    ctaPrimary: 'Start free trial',
-    ctaSecondary: 'See feature demo',
-    ctaNote: 'No credit card · 14-day trial',
+    lead: 'Stop chasing rent on Zalo. Ohomi handles invoices, contracts, and maintenance — automatically.',
+    ctaPrimary: 'Book a demo',
+    ctaSecondary: 'See pricing',
+    ctaNote: 'No credit card · 30-minute demo',
     proofPairs: [
       { before: 'Manual rent collection', after: 'Automated invoices, on time' },
       { before: 'Contract tracking in Excel', after: '30 / 15 / 7-day expiry alerts' },
@@ -231,7 +231,7 @@ export const en: LandingDict = {
         title: 'Auto Invoicing',
         desc: 'Bills generated and sent automatically on due date. Tenants pay in one tap.',
         stat: 'Saves ~2 hrs/week',
-        pain: 'Chasing rent on WhatsApp',
+        pain: 'Chasing rent on Zalo',
       },
       contractAlert: {
         title: 'Contract Alerts',
@@ -392,7 +392,7 @@ export const en: LandingDict = {
     eyebrow: 'Pricing',
     heading: 'Tiered pricing\nmore rooms, more savings',
     lead: 'Pay only for actual rooms, no hidden fees. Start today.',
-    bestValue: 'BEST VALUE',
+    bestValue: 'Best fit',
     plans: [
       {
         tier: 'Starter',
@@ -406,8 +406,8 @@ export const en: LandingDict = {
           'Monthly reports',
           'Zalo support',
         ],
-        cta: 'Get started',
-        highlight: false,
+        cta: 'Book a demo',
+        highlight: true,
       },
       {
         tier: 'Growth',
@@ -422,7 +422,7 @@ export const en: LandingDict = {
           'Advanced reports',
         ],
         cta: 'Choose this plan',
-        highlight: true,
+        highlight: false,
       },
       {
         tier: 'Scale',
@@ -436,7 +436,7 @@ export const en: LandingDict = {
           'Third-party API',
           'Priority 24/7 support',
         ],
-        cta: 'Get started',
+        cta: 'Choose this plan',
         highlight: false,
       },
       {
@@ -463,7 +463,7 @@ export const en: LandingDict = {
     fieldName: 'Full name',
     fieldPhone: 'Phone number',
     fieldRooms: 'Number of rooms',
-    roomsOptions: ['1–5 rooms', '6–20 rooms', '21–50 rooms', '50+ rooms'],
+    roomsOptions: ['1–100 rooms', '101–300 rooms', '301–500 rooms', '500+ rooms'],
     submit: 'Book My Demo',
     trustItems: ['Response within 24h', 'No credit card', 'Free 30-min demo'],
     successTitle: 'Request received!',
@@ -471,43 +471,47 @@ export const en: LandingDict = {
     phonePlaceholder: '0909 xxx xxx',
     errorRequired: 'Required',
     errorPhoneInvalid: 'Enter a valid phone number',
-    errorSubmit: "Something went wrong. Please try again or call us directly.",
+    errorSubmit: 'Could not send. Try again, or email support@ohomi.vn.',
     errorRateLimited: 'Too many attempts — please try again in a minute.',
+    errorRetry: 'Try again',
+    successAgain: 'Send another request',
   },
   faq: {
     eyebrow: 'FAQ',
     heading: 'Questions landlords ask first.',
     items: [
       {
-        question: 'Which smart-home brands does Ohomi support?',
-        answer:
-          "Tuya, Aqara, and any Matter-compatible device out of the box. We add new integrations monthly — if your brand isn't on the list, tell us and we'll prioritize it.",
-      },
-      {
-        question: 'Can tenants see devices without installing another app?',
-        answer:
-          'Yes. Tenants use the Ohomi portal from any browser — no vendor app juggling. A native app is available if they prefer.',
-      },
-      {
-        question: 'How is rent payment handled and what are the fees?',
-        answer:
-          'Tenants pay by card or bank transfer. Ohomi keeps transaction fees transparent — see the pricing page for exact rates per region.',
-      },
-      {
         question: 'Do I need to migrate my existing leases?',
         answer:
           'No. Import leases and tenants from Excel during onboarding, or keep them in your current system and wire Ohomi in as an additional layer.',
       },
       {
+        question: 'How is pricing calculated — any hidden fees?',
+        answer:
+          'You pay per occupied room, with no hidden fees. Starter 10,000 VND/room, Growth 8,000, Scale 4,000, Enterprise 2,000 — per month.',
+        href: '#pricing',
+        linkLabel: 'See pricing',
+      },
+      {
+        question: 'How is rent collected?',
+        answer:
+          'Tenants pay by VietQR or bank transfer. Invoices go out on the due date and reconcile automatically — no chasing rent on Zalo.',
+      },
+      {
         question: 'What happens when a tenant moves out?',
         answer:
-          'Ohomi runs the move-out checklist, revokes smart access, resets device presets, and produces a clean statement — automatically.',
+          'Ohomi runs the move-out checklist, revokes access, resets devices, and produces a clean statement — automatically.',
+      },
+      {
+        question: 'I manage fewer than 20 rooms — is this for me?',
+        answer:
+          'Yes. Starter covers 1–100 rooms, and the 30-minute demo starts from the size of house you actually run.',
       },
     ],
   },
   socialProofSection: {
     eyebrow: 'What Landlords Say',
-    heading: 'Trusted by 1,200+ landlords\nacross Vietnam',
+    heading: 'Landlords across Vietnam\nrun on Ohomi',
     items: [
       {
         quote: "Used to spend 2 days every month on Excel. Now it's 15 minutes.",

@@ -3,13 +3,10 @@
   <footer class="oh-footer">
     <div class="oh-footer__inner">
       <div class="oh-footer__col oh-footer__col--brand">
-        <OwenHomeLogo :width="120" :height="32" />
+        <NuxtLink to="/" class="oh-footer__brand" aria-label="Ohomi">
+          <OwenHomeLogo :width="120" :height="32" />
+        </NuxtLink>
         <p>{{ t('footer.tagline') }}</p>
-        <div class="oh-footer__social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Zalo">z</a>
-          <a href="#" aria-label="YouTube">▶</a>
-        </div>
       </div>
 
       <div class="oh-footer__col">
@@ -72,30 +69,17 @@ const bottomText = computed(() =>
   border-bottom: 1px solid var(--oh-card-3d-border);
 }
 
+.oh-footer__brand {
+  display: inline-flex;
+  color: #f8fafc;
+}
+
 .oh-footer__col--brand p {
   font-size: 14px;
   line-height: 1.6;
   margin: 16px 0 20px;
   max-width: 220px;
   color: var(--oh-text-2);
-}
-
-.oh-footer__social {
-  display: flex;
-  gap: 10px;
-}
-
-.oh-footer__social a {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--oh-radius-full, 999px);
-  border: 1px solid var(--oh-card-3d-border);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: var(--oh-text-2);
-  text-decoration: none;
 }
 
 .oh-footer__col h4 {
@@ -131,7 +115,7 @@ const bottomText = computed(() =>
   margin: 0 auto;
   padding: 20px 0 28px;
   font-size: 13px;
-  color: var(--oh-text-3);
+  color: var(--oh-text-2);
 }
 
 @media (max-width: 900px) {

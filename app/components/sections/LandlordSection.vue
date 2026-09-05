@@ -37,6 +37,7 @@
         :stat="dict.landlord.features[key].stat"
         :pain="dict.landlord.features[key].pain"
         class="reveal-up"
+        :class="{ 'oh-ll__card--extra': idx > 1 }"
         :data-idx="idx"
       />
     </div>
@@ -44,8 +45,8 @@
     <!-- Contextual CTA -->
     <div class="oh-ll__cta reveal-up">
       <div class="oh-ll__cta-actions">
-        <a href="#final-cta" class="oh-ll__cta-btn">{{ t('landlord.ctaPrimary') }}</a>
-        <a href="#final-cta" class="oh-ll__cta-btn oh-ll__cta-btn--secondary">{{ t('landlord.ctaSecondary') }}</a>
+        <a href="#final-cta" class="oh-ll__cta-btn" @click.prevent="goToDemo()">{{ t('landlord.ctaPrimary') }}</a>
+        <a href="#pricing" class="oh-ll__cta-btn oh-ll__cta-btn--secondary" @click.prevent="goToPricing()">{{ t('landlord.ctaSecondary') }}</a>
       </div>
       <span class="oh-ll__cta-note">{{ t('landlord.ctaNote') }}</span>
     </div>
@@ -59,6 +60,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 const { t, dict } = useLandingI18n()
+const { goToDemo, goToPricing } = useDemoIntent()
 
 const secondaryKeys = ['contractAlert', 'revenueDash', 'maintenance', 'occupancy', 'multiProperty'] as const
 
@@ -293,6 +295,9 @@ onMounted(() => {
   }
   .oh-ll__hero-card {
     grid-column: 1;
+  }
+  .oh-ll__card--extra {
+    display: none;
   }
 }
 </style>

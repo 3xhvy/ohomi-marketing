@@ -250,7 +250,7 @@ const style = computed(() => ({
 .fc3d__inv-label {
   font-size: 11px;
   font-weight: 600;
-  color: var(--oh-text-2);
+  color: #404854;
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
 }
@@ -276,20 +276,20 @@ const style = computed(() => ({
 
 .fc3d__inv-tenant {
   font-size: 12px;
-  color: var(--oh-text-2);
+  color: #404854;
   margin-bottom: 4px;
 }
 
 .fc3d__inv-period {
   font-size: 11px;
-  color: var(--oh-text-3);
+  color: #6b7280;
   margin-bottom: 8px;
 }
 
 .fc3d__inv-amount {
   font-size: 18px;
   font-weight: 700;
-  color: var(--oh-text);
+  color: #0f1219;
   font-variant-numeric: tabular-nums;
 }
 
