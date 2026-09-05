@@ -56,6 +56,12 @@ applies after hydration. Any new visitor-facing string needs an entry in **both*
 
 ## Deploying
 
+This repo is its **own** compose project. It does not live in `owen-backend`'s
+compose file. nginx on the VPS proxies `127.0.0.1:3001`; that is the only
+coupling.
+
+### Local image (no VPS)
+
 ```bash
 docker build -t ohomi-marketing .
 docker run -p 3001:3001 \
@@ -63,6 +69,57 @@ docker run -p 3001:3001 \
   -e NUXT_PUBLIC_SITE_URL=https://ohomi.vn \
   ohomi-marketing
 ```
+
+### CI/CD (GitHub Actions → GHCR → `/opt/ohomi-marketing`)
+
+Push to `main` (or **Actions → Deploy marketing → Run workflow**) will typecheck,
+build `ghcr.io/<owner>/ohomi-marketing:<branch>-<sha>` plus `latest`, rsync
+`docker-compose.yml` and `scripts/deploy.sh` to the VPS, then `compose pull &&
+up -d` **only this stack**. A rollback is the same workflow with `image_tag` set
+to a previous sha tag.
+
+**One-time VPS setup** — clone and build, no rsync:
+
+```bash
+ssh -p 24700 deploy@YOUR_VM
+sudo mkdir -p /opt/ohomi-marketing
+sudo chown deploy:deploy /opt/ohomi-marketing
+git clone git@github.com:3xhvy/ohomi-marketing.git /opt/ohomi-marketing
+cd /opt/ohomi-marketing
+docker compose up -d --build
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3001/privacy
+```
+
+Later updates are `git pull && docker compose up -d --build` until Actions is wired.
+After the first GHCR image exists, grant the VM's existing PAT read access on the
+`ohomi-marketing` package (or make the package public) so CI can `compose pull`.
+
+Optional `/opt/ohomi-marketing/.env` if you need to override the compose
+defaults. The deploy script only writes `IMAGE_TAG` and `GITHUB_REPOSITORY`:
+
+```
+NUXT_PUBLIC_API_BASE=https://ohomi.net
+NUXT_PUBLIC_SITE_URL=https://ohomi.vn
+NUXT_PUBLIC_APP_URL=https://host.ohomi.net
+```
+
+**GitHub repo settings** (this repo, not `owen-backend`):
+
+| Kind | Name | Value |
+|---|---|---|
+| Variable | `VM_HOST` | VPS hostname or IP |
+| Variable | `VM_USERNAME` | `deploy` |
+| Variable | `VM_SSH_PORT` | `24700` (optional; that is the default) |
+| Secret | `VM_SSH_KEY` | Same deploy private key the app pipeline uses |
+| Secret | `TELEGRAM_BOT_TOKEN` | Optional; skip notify if unset |
+| Secret | `TELEGRAM_CHAT_ID` | Optional |
+
+Also: **Settings → Actions → General → Workflow permissions → Read and write**
+so the job can push to GHCR.
+
+nginx + TLS for `ohomi.vn` are still Plan 2 in `owen-backend`. Until that flip,
+the container can be healthy on `:3001` while `https://ohomi.vn` still 301s to
+`.net`.
 
 The container listens on 3001 and answers `GET /` with 200 once healthy, which is
 what the compose healthcheck uses.

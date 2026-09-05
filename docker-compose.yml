@@ -1,0 +1,40 @@
+# Own compose project. Lives on the VPS at /opt/ohomi-marketing.
+# nginx on the host proxies 127.0.0.1:3001 — this stack never joins owen-backend.
+#
+# Interpolation (IMAGE_TAG, GITHUB_REPOSITORY) comes from the environment the
+# deploy script exports. Optional overrides for NUXT_PUBLIC_* can sit in a
+# local .env that compose reads automatically — that file is not in git.
+
+services:
+  marketing:
+    image: ghcr.io/${GITHUB_REPOSITORY:-3xhvy/ohomi-marketing}:${IMAGE_TAG:-latest}
+    build: .
+    # `missing` lets the first VPS bring-up `compose up --build` without GHCR.
+    # CI still `compose pull` in deploy.sh, so later deploys use the registry.
+    pull_policy: missing
+    restart: always
+    container_name: ohomi-marketing
+    ports:
+      - "127.0.0.1:3001:3001"
+    environment:
+      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-https://ohomi.net}
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-https://ohomi.vn}
+      NUXT_PUBLIC_APP_URL: ${NUXT_PUBLIC_APP_URL:-https://host.ohomi.net}
+    healthcheck:
+      # node:22-alpine has no wget; Node 22 has fetch.
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3001/').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"

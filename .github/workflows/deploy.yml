@@ -1,0 +1,167 @@
+name: Deploy marketing
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Skip build and deploy this existing tag (rollback)"
+        required: false
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+  build:
+    needs: verify
+    if: github.event_name != 'pull_request' && inputs.image_tag == ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_tag: ${{ steps.meta.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Notify build result
+        if: always()
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          COMMIT_SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
+          COMMIT_URL="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          STATUS=$([[ "${{ job.status }}" == "success" ]] && echo "✅ Build Successful" || echo "❌ Build Failed")
+          MESSAGE=$(cat <<EOF
+          📦 <b>ohomi-marketing — Build</b>
+
+          <b>Result:</b> ${STATUS}
+          🔀 <b>Branch:</b> <code>${{ github.ref_name }}</code>
+          📝 <b>Commit:</b> <a href="${COMMIT_URL}"><code>${COMMIT_SHORT}</code></a>
+          👤 <b>By:</b> <code>${{ github.actor }}</code>
+          🔗 <a href="${RUN_URL}">View Pipeline</a>
+          EOF
+          )
+          bash .github/scripts/telegram-notify.sh "$MESSAGE"
+
+  deploy:
+    needs: [verify, build]
+    if: >
+      github.event_name != 'pull_request' &&
+      always() &&
+      needs.verify.result == 'success' &&
+      (needs.build.result == 'success' || needs.build.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve image tag
+        id: tag
+        run: |
+          if [ -n "${{ inputs.image_tag }}" ]; then
+            echo "value=${{ inputs.image_tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ needs.build.outputs.image_tag }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_SSH_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${{ vars.VM_SSH_PORT || 24700 }}" -H "${{ vars.VM_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Sync compose files to VM
+        run: |
+          SSH="ssh -p ${{ vars.VM_SSH_PORT || 24700 }} -i ~/.ssh/deploy_key"
+          DEST="${{ vars.VM_USERNAME }}@${{ vars.VM_HOST }}"
+          $SSH "$DEST" 'mkdir -p /opt/ohomi-marketing/scripts'
+          rsync -az -e "$SSH" docker-compose.yml "$DEST:/opt/ohomi-marketing/"
+          rsync -az -e "$SSH" scripts/deploy.sh "$DEST:/opt/ohomi-marketing/scripts/"
+          $SSH "$DEST" 'chmod +x /opt/ohomi-marketing/scripts/deploy.sh'
+
+      - name: Deploy
+        run: |
+          ssh -p "${{ vars.VM_SSH_PORT || 24700 }}" -i ~/.ssh/deploy_key \
+            "${{ vars.VM_USERNAME }}@${{ vars.VM_HOST }}" \
+            "IMAGE_TAG='${{ steps.tag.outputs.value }}' GITHUB_REPOSITORY='${{ github.repository }}' bash /opt/ohomi-marketing/scripts/deploy.sh"
+
+      - name: Notify deploy result
+        if: always()
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          COMMIT_SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
+          COMMIT_URL="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ "${{ job.status }}" == "success" ]; then
+            STATUS="✅ Deploy Successful"
+            EXTRA="🌐 <b>Site:</b> <a href=\"https://ohomi.vn\">ohomi.vn</a>"
+          else
+            STATUS="❌ Deploy Failed"
+            EXTRA="🔗 <a href=\"${RUN_URL}\">View Logs</a>"
+          fi
+          MESSAGE=$(cat <<EOF
+          🏁 <b>ohomi-marketing — Deploy</b>
+
+          <b>Result:</b> ${STATUS}
+          🏷️ <b>Image:</b> <code>${{ steps.tag.outputs.value }}</code>
+          🔀 <b>Branch:</b> <code>${{ github.ref_name }}</code>
+          📝 <b>Commit:</b> <a href="${COMMIT_URL}"><code>${COMMIT_SHORT}</code></a>
+          👤 <b>By:</b> <code>${{ github.actor }}</code>
+          ${EXTRA}
+          🔗 <a href="${RUN_URL}">View Pipeline</a>
+          EOF
+          )
+          bash .github/scripts/telegram-notify.sh "$MESSAGE"
