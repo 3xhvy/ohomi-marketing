@@ -25,6 +25,13 @@ echo "📦 Pulling ghcr.io/${GITHUB_REPOSITORY}:${IMAGE_TAG}..."
 docker compose pull
 
 echo "🚀 Restarting marketing container..."
+# First bring-up used `compose up --build` from a git clone (or another
+# directory). That container keeps the name but is not this compose project,
+# so `up -d` would fail with a name conflict.
+if docker inspect ohomi-marketing >/dev/null 2>&1; then
+  echo "♻️  Removing leftover ohomi-marketing so this project can take the name..."
+  docker rm -f ohomi-marketing
+fi
 docker compose up -d
 
 echo "⏳ Waiting for marketing to become healthy..."
